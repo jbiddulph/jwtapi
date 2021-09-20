@@ -38,12 +38,7 @@ class EventController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'eventTitle'=>'required',
-            'eventDetails'=>'required',
-            'eventDate'=>'required',
-            'eventTimeStart'=>'required',
-            'eventTimeEnd'=>'required',
-            'eventDate'=>'required'
+            'eventName'=>'required',
         ]);
         return Event::create($request->all());
     }
@@ -51,12 +46,12 @@ class EventController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Event  $event
+     * @param  string  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Event $event)
+    public function show($id)
     {
-        //
+        return Event::where('id', $id)->get();
     }
 
     /**
@@ -74,22 +69,25 @@ class EventController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Event  $event
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Event $event)
+    public function update(Request $request, $id)
     {
-        //
+        $event = Event::find($id);
+
+        $event->update($request->all());
+        return $event;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Event  $event
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Event $event)
+    public function destroy($id)
     {
-        //
+        return Event::destroy($id);
     }
 }
