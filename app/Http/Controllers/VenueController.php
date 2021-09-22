@@ -15,8 +15,20 @@ class VenueController extends Controller
      */
     public function index()
     {
-        $venues = DB::table('venues')->simplePaginate(50);
+        $venues = DB::table('venues')->orderBy('id', 'DESC')->simplePaginate(50);
         return $venues;
+    }
+    
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getPostCodes()
+    {
+        
+        $postcodes = DB::table('venues')->distinct()->get(['postcode']);
+        return $postcodes;
     }
 
     /**
@@ -67,6 +79,7 @@ class VenueController extends Controller
         $request->validate([
             'venuename'=>'required',
         ]);
+        
         return Venue::create($request->all());
     }
 

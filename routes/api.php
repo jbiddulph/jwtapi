@@ -7,6 +7,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\LogoController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UploadController;
 use App\Http\Controllers\LocationHeadersController;
 
 use Illuminate\Http\Request;
@@ -33,6 +34,7 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     Route::resource('settings', SettingController::class);
     Route::resource('categorys', CategoryController::class);
     Route::get('/venues', [VenueController::class, 'index']);
+    Route::get('/postcodes', [VenueController::class, 'getPostCodes']);
     Route::get('/events', [EventController::class, 'index']);
     Route::get('/locations', [VenueController::class, 'getLocations']);
     Route::get('/pages', [PageController::class, 'index']);
@@ -57,6 +59,7 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     Route::post('/venues', [VenueController::class, 'store']);
     Route::put('/venues/{id}', [VenueController::class, 'update']);
     Route::delete('/venues/{id}', [VenueController::class, 'destroy']);
+    Route::post('upload', [UploadController::class, 'handleUploads']);
     //Pages
     Route::post('/pages', [PageController::class, 'store']);
     Route::put('/pages/{id}', [PageController::class, 'update']);
