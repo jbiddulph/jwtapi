@@ -18,6 +18,17 @@ class VenueController extends Controller
         $venues = DB::table('venues')->orderBy('id', 'DESC')->simplePaginate(50);
         return $venues;
     }
+
+    /**
+     * Search for a name.
+     *
+     * @param  str  $name
+     * @return \Illuminate\Http\Response
+     */
+    public function search($postcode)
+    {  
+        return Venue::where('postcode', 'like', '%'.$postcode.'%')->limit(250)->get();
+    }
     
     /**
      * Display a listing of the resource.

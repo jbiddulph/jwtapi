@@ -46,7 +46,7 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     Route::get('/home', [PageController::class, 'home']);
     Route::get('/venues/{id}', [PageController::class, 'show']);
     Route::get('/venue/{id}', [VenueController::class, 'show']);
-    Route::get('venues/search/{name}', [VenueController::class, 'search']);
+    Route::get('/venues/search/{postcode}', [VenueController::class, 'search']);
     Route::get('/pages/{id}', [PageController::class, 'show']);
     Route::get('/locations/{town}', [VenueController::class, 'getTown']);
     Route::get('pages/search/{name}', [PageController::class, 'search']);
