@@ -7,10 +7,17 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
+// use Spatie\Permission\Models\Role;
+// use Spatie\Permission\Models\Permission;
+
+
+// $role = Role::create(['name' => 'writer']);
+// $permission = Permission::create(['name' => 'edit articles']);
 
 class User extends Authenticatable implements JWTSubject
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
