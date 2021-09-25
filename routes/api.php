@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VenueController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\HeaderController;
@@ -28,6 +29,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => ['jwt.verify']], function () {
     Route::resource('venues', VenueController::class);
     Route::resource('events', EventController::class);
+    Route::resource('users', UserController::class);
     Route::resource('pages', PageController::class);
     Route::resource('headers', HeaderController::class);
     Route::resource('logos', LogoController::class);
@@ -36,6 +38,7 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     Route::get('/venues', [VenueController::class, 'index']);
     Route::get('/postcodes', [VenueController::class, 'getPostCodes']);
     Route::get('/events', [EventController::class, 'index']);
+    Route::get('/users', [UserController::class, 'index']);
     Route::get('/locations', [VenueController::class, 'getLocations']);
     Route::get('/pages', [PageController::class, 'index']);
     Route::get('/headers', [HeaderController::class, 'index']);
