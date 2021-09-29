@@ -25,9 +25,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Public Routes
+// Authorized Routes
 Route::group(['middleware' => ['jwt.verify']], function () {
-    Route::resource('venues', VenueController::class);
+    Route::resource('admin/venues', VenueController::class);
     Route::resource('events', EventController::class);
     Route::resource('users', UserController::class);
     Route::resource('pages', PageController::class);
@@ -35,7 +35,6 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     Route::resource('logos', LogoController::class);
     Route::resource('settings', SettingController::class);
     Route::resource('categorys', CategoryController::class);
-    Route::get('/venues', [VenueController::class, 'index']);
     Route::get('/postcodes', [VenueController::class, 'getPostCodes']);
     Route::get('/events', [EventController::class, 'index']);
     Route::get('/users', [UserController::class, 'index']);
@@ -47,8 +46,8 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     Route::get('/settings', [SettingController::class, 'index']);
     Route::get('/categories', [CategoriesController::class, 'index']);
     Route::get('/home', [PageController::class, 'home']);
-    Route::get('/venues/{id}', [PageController::class, 'show']);
-    Route::get('/venue/{id}', [VenueController::class, 'show']);
+    
+    
     Route::get('/venues/search/{postcode}', [VenueController::class, 'search']);
     Route::get('/pages/{id}', [PageController::class, 'show']);
     Route::get('/locations/{town}', [VenueController::class, 'getTown']);
@@ -95,3 +94,7 @@ Route::group([
     Route::post('me', 'AuthController@me');
 
 });
+
+// Venues public
+Route::get('/venues', [VenueController::class, 'index']);
+Route::get('/venue/{id}', [VenueController::class, 'show']);
