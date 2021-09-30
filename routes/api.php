@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Authorized Routes
+// Public Routes
 Route::group(['middleware' => ['jwt.verify']], function () {
     Route::resource('admin/venues', VenueController::class);
     Route::resource('events', EventController::class);
@@ -46,8 +46,8 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     Route::get('/settings', [SettingController::class, 'index']);
     Route::get('/categories', [CategoriesController::class, 'index']);
     Route::get('/home', [PageController::class, 'home']);
-    
-    
+    Route::get('/venues/{id}', [PageController::class, 'show']);
+    Route::get('/venue/{id}', [VenueController::class, 'show']);
     Route::get('/venues/search/{postcode}', [VenueController::class, 'search']);
     Route::get('/pages/{id}', [PageController::class, 'show']);
     Route::get('/locations/{town}', [VenueController::class, 'getTown']);
@@ -95,6 +95,4 @@ Route::group([
 
 });
 
-// Venues public
 Route::get('/venues', [VenueController::class, 'index']);
-Route::get('/venue/{id}', [VenueController::class, 'show']);
