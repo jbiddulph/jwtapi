@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Venue;
+use App\Http\Resources\VenueResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -16,7 +17,7 @@ class VenueController extends Controller
     public function index()
     {
         $venues = DB::table('venues')->orderBy('id', 'DESC')->simplePaginate(50);
-        return $venues;
+        return VenueResource::collection($venues);
     }
 
     /**
@@ -27,7 +28,8 @@ class VenueController extends Controller
      */
     public function search($postcode)
     {  
-        return Venue::where('postcode', 'like', '%'.$postcode.'%')->limit(250)->get();
+        // return Venue::where('postcode', 'like', '%'.$postcode.'%')->limit(250)->get();
+        return CategoryResource::make(Venue::where('postcode', 'like', '%'.$postcode.'%')->limit(250)->get());
     }
     
     /**
@@ -37,7 +39,6 @@ class VenueController extends Controller
      */
     public function getPostCodes()
     {
-        
         $postcodes = DB::table('venues')->distinct()->get(['postcode']);
         return $postcodes;
     }
@@ -50,7 +51,8 @@ class VenueController extends Controller
      */
     public function show($id)
     {
-        return Venue::where('id', $id)->get();
+        // return Venue::where('id', $id)->get();
+        return VenueResource::make(Venue::find($id));
     }
     
 
@@ -69,17 +71,6 @@ class VenueController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * 
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -90,19 +81,8 @@ class VenueController extends Controller
         $request->validate([
             'venuename'=>'required',
         ]);
-        
-        return Venue::create($request->all());
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Venue  $venue
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Venue $venue)
-    {
-        //
+        // return Venue::create($request->all());
+        return VenueResource::make(Venue::create($request->all()));
     }
 
     /**
@@ -117,7 +97,8 @@ class VenueController extends Controller
         $venue = Venue::find($id);
 
         $venue->update($request->all());
-        return $venue;
+
+        return VenueResource::make($venue);
     }
 
     /**
