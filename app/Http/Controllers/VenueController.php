@@ -28,8 +28,8 @@ class VenueController extends Controller
      */
     public function search($postcode)
     {  
-        // return Venue::where('postcode', 'like', '%'.$postcode.'%')->limit(250)->get();
-        return CategoryResource::make(Venue::where('postcode', 'like', '%'.$postcode.'%')->limit(250)->get());
+        return Venue::where('postcode', 'like', '%'.$postcode.'%')->limit(250)->get();
+        // return VenueResource::make(Venue::where('postcode', 'like', '%'.$postcode.'%')->limit(250)->get());
     }
     
     /**
