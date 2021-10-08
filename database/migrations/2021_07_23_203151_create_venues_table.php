@@ -28,6 +28,8 @@ class CreateVenuesTable extends Migration
             $table->string('postcode')->nullable();
             $table->string('postalsearch')->nullable();
             $table->string('telephone')->nullable();
+            $table->string('easting')->nullable();
+            $table->string('northing')->nullable();
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->string('local_authority')->nullable();

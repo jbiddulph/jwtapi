@@ -39,7 +39,7 @@ class VenueFactory extends Factory
             'longitude' => $this->faker->longitude,
             'local_authority' => $this->faker->word,
             'website' => $this->faker->url,
-            'photo' => $this->faker->image,
+            'photo' => $this->faker->imageUrl(360, 360, 'animals', true, 'dogs', true),
             'is_live' => $this->faker->numberBetween(0,1)
         ];
     }
