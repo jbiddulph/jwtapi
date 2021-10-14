@@ -65,11 +65,16 @@ class VenueController extends Controller
      * @param  string  $town
      * @return \Illuminate\Http\Response
      */
-    public function getTown($town)
+    public function getTownVenues($town)
     {
-        return Venue::where('town', $town)->get();
-        // $venues = DB::table('venues')->where('town', $town)->simplePaginate(15);
-        // return $venues;
+        $venues = Venue::where('town', $town)
+        ->has('events') // get venues that have data in their EVENTS 
+        ->with('events') // eager loads events relation
+        ->simplePaginate(100);
+        return VenueResource::collection($venues);
+        
+        // return Venue::where('town', $town)->get();
+        
         
     }
 
