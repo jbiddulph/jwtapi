@@ -16,7 +16,7 @@ class VenueController extends Controller
      */
     public function index()
     {
-        $venues = DB::table('venues')->where('postcode', '=', 'BN11 3ED')->with('events')->simplePaginate(50);
+        $venues = DB::table('venues')->orderBy('id', 'DESC')->simplePaginate(50);
         return VenueResource::collection($venues);
     }
 
@@ -51,8 +51,8 @@ class VenueController extends Controller
      */
     public function show($id)
     {
-        return Venue::with('events')->find($id);
-        // return VenueResource::make(Venue::find($id));
+        // return Venue::where('id', $id)->get();
+        return VenueResource::make(Venue::find($id));
     }
     
 
