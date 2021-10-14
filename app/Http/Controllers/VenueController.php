@@ -16,7 +16,7 @@ class VenueController extends Controller
      */
     public function index()
     {
-        $venues = DB::table('venues')->orderBy('id', 'DESC')->simplePaginate(50);
+        $venues = DB::table('venues')->with('events')->orderBy('id', 'DESC')->simplePaginate(50);
         return VenueResource::collection($venues);
     }
 

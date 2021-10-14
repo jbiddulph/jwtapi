@@ -33,6 +33,7 @@ class VenueResource extends JsonResource
             'website' => $this->website,
             'photo' => $this->photo,
             'is_live' => $this->is_live,
+            'events' => $this->events,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at
         ];
