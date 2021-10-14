@@ -89,7 +89,7 @@ class VenueController extends Controller
         ->with('events') // eager loads events relation
         ->distinct()
         ->get(['town']);
-        return VenueResource::make($towns);
+        return $towns;
     }
 
     /**
