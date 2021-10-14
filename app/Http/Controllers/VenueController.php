@@ -85,9 +85,10 @@ class VenueController extends Controller
      */
     public function getTowns()
     {
-        $towns = Venue::has('events') // get venues that have data in their EVENTS 
+        $towns = Venue::distinct('town')
+        ->has('events') // get venues that have data in their EVENTS 
         ->with('events') // eager loads events relation
-        ->get(['town']);
+        ->get();
         return $towns;
     }
 
