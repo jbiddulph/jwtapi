@@ -67,15 +67,30 @@ class VenueController extends Controller
      */
     public function getTownVenues($town)
     {
-        $venues = Venue::where('town', $town)
+        $towns = Venue::where('town', $town)
         ->has('events') // get venues that have data in their EVENTS 
         ->with('events') // eager loads events relation
         ->simplePaginate(100);
-        return VenueResource::collection($venues);
+        return VenueResource::collection($towns);
         
         // return Venue::where('town', $town)->get();
         
-        
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param  string  $town
+     * @return \Illuminate\Http\Response
+     */
+    public function getTowns()
+    {
+        $towns = DB::table('venues')
+        ->has('events') // get venues that have data in their EVENTS 
+        ->with('events') // eager loads events relation
+        ->distinct()
+        ->get(['town']);
+        return $towns;
     }
 
     /**
