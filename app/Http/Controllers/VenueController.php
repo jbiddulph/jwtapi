@@ -16,9 +16,8 @@ class VenueController extends Controller
      */
     public function index()
     {
-        $venues = DB::table('venues')->orderBy('id', 'DESC')->simplePaginate(50);
-        $venues = Venue::where('postcode', '=', 'BN11 3ED')
-        ->has('events') // get venues that have data in their EVENTS 
+        // $venues = Venue::where('postcode', '=', 'BN11 3ED')
+        $venues = Venue::has('events') // get venues that have data in their EVENTS 
         ->with('events') // eager loads events relation
         ->simplePaginate(50);
         return VenueResource::collection($venues);
