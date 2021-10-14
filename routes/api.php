@@ -102,4 +102,4 @@ Route::get('/venues/town/{town}', [VenueController::class, 'getTownVenues']);
 Route::get('/events', [EventController::class, 'index']);
 Route::get('/events/{id}', [EventController::class, 'show']);
 //Events
-Route::post('/events', [VenueController::class, 'store']);
+Route::post('/events', [EventController::class, 'store']);
