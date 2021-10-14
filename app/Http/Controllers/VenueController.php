@@ -51,8 +51,8 @@ class VenueController extends Controller
      */
     public function show($id)
     {
-        return Venue::with('events')->find($id);
-        // return VenueResource::make(Venue::find($id));
+        // return Venue::where('id', $id)->get();
+        return VenueResource::make(Venue::find($id));
     }
     
 
