@@ -25,10 +25,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+Route::get('/venues/{id}', [VenueController::class, 'show']);
 Route::get('/venue/towns', [VenueController::class, 'getTowns']);
 Route::get('/venues', [VenueController::class, 'index']);
-Route::get('/venues/{id}', [VenueController::class, 'show']);
+
 Route::get('/venues/town/{town}', [VenueController::class, 'getTownVenues']);
 Route::get('/events', [EventController::class, 'index']);
 Route::get('/events/{id}', [EventController::class, 'show']);
