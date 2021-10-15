@@ -25,6 +25,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Route::get('/venue/towns', [VenueController::class, 'getTowns']);
+Route::get('/venues', [VenueController::class, 'index']);
+Route::get('/venues/{id}', [VenueController::class, 'show']);
+Route::get('/venues/town/{town}', [VenueController::class, 'getTownVenues']);
+Route::get('/events', [EventController::class, 'index']);
+Route::get('/events/{id}', [EventController::class, 'show']);
+//Events
+Route::post('/events', [EventController::class, 'store']);
+Route::get('/venues/search/{postcode}', [VenueController::class, 'search']);
+
 // Public Routes
 Route::group(['middleware' => ['jwt.verify']], function () {
     Route::resource('admin/venues', VenueController::class);
@@ -94,12 +105,3 @@ Route::group([
 
 });
 
-Route::get('/venues', [VenueController::class, 'index']);
-Route::get('/venues/{id}', [VenueController::class, 'show']);
-Route::get('/venue/towns', [VenueController::class, 'getTowns']);
-Route::get('/venues/town/{town}', [VenueController::class, 'getTownVenues']);
-Route::get('/events', [EventController::class, 'index']);
-Route::get('/events/{id}', [EventController::class, 'show']);
-//Events
-Route::post('/events', [EventController::class, 'store']);
-Route::get('/venues/search/{postcode}', [VenueController::class, 'search']);
