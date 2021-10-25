@@ -34,6 +34,7 @@ Route::get('/events/{id}', [EventController::class, 'show']);
 //Events
 Route::post('/events', [EventController::class, 'store']);
 Route::get('/venues/search/{postcode}', [VenueController::class, 'search']);
+Route::post('upload', [UploadController::class, 'handleUploads']);
 
 // Public Routes
 Route::group(['middleware' => ['jwt.verify']], function () {
@@ -70,7 +71,7 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     Route::post('/venues', [VenueController::class, 'store']);
     Route::put('/venues/{id}', [VenueController::class, 'update']);
     Route::delete('/venues/{id}', [VenueController::class, 'destroy']);
-    Route::post('upload', [UploadController::class, 'handleUploads']);
+    
     //Pages
     Route::post('/pages', [PageController::class, 'store']);
     Route::put('/pages/{id}', [PageController::class, 'update']);
