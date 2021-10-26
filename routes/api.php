@@ -40,7 +40,7 @@ Route::get('/events/{id}', [EventController::class, 'show']);
 // Public Routes
 Route::group(['middleware' => ['jwt.verify']], function () {
     Route::resource('admin/venues', VenueController::class);
-    Route::resource('events', EventController::class);
+    // Route::resource('events', EventController::class);
     Route::resource('users', UserController::class);
     Route::resource('pages', PageController::class);
     Route::resource('headers', HeaderController::class);
