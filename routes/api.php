@@ -30,11 +30,12 @@ Route::get('/venue/towns', [VenueController::class, 'getTowns']);
 Route::get('/venues', [VenueController::class, 'index']);
 
 Route::get('/events', [EventController::class, 'index']);
-Route::get('/events/{id}', [EventController::class, 'show']);
+
 //Events
 Route::post('/events', [EventController::class, 'store']);
 Route::get('/venues/search/{postcode}', [VenueController::class, 'search']);
 Route::post('upload', [UploadController::class, 'handleUploads']);
+Route::get('/events/{id}', [EventController::class, 'show']);
 
 // Public Routes
 Route::group(['middleware' => ['jwt.verify']], function () {
