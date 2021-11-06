@@ -43,8 +43,6 @@ class EventController extends Controller
             'eventName'=>'required',
         ]);
         $user = User::findOrFail(1);
-        print_r($user);
-        die();
         Mail::send('emails.reminder', ['user' => $user], function ($m) use ($user) {
             $m->from('john.mbiddulph@icloud.com', 'Your Application');
 
