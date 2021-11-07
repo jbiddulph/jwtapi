@@ -1,7 +1,7 @@
 @component('mail::message')
 # Introduction
 
-<!-- {{ $new_event->eventName }} -->
+{{ $new_event->eventName }}
 
 @component('mail::button', ['url' => ''])
 Button Text
