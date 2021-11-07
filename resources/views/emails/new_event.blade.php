@@ -9,7 +9,7 @@
 
 **Until:** {{ $new_event->eventTimeEnd }}
 
-@component('mail::button', ['url' => 'http://www.pubmic.co.uk/pubmic/venues/'.{{ $new_event->venue_id }}.'])
+@component('mail::button', ['url' => 'http://www.pubmic.co.uk/pubmic/venues/{{ $new_event->venue_id }}'])
 Go to Venue
 @endcomponent
 
