@@ -11,16 +11,16 @@ class NewEventMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    // public $new_event;
+    public $new_event;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($new_event)
     {
-        // $this->new_event = $new_event;
+        $this->new_event = $new_event;
     }
 
     /**
@@ -30,6 +30,10 @@ class NewEventMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.new_event');
+        return $this->markdown('emails.new_event')->with(
+            [
+                'new_email' => $this->new_event
+            ]
+        );
     }
 }
