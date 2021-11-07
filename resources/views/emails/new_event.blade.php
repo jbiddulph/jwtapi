@@ -1,7 +1,7 @@
 @component('mail::message')
 # Introduction
 
-The body of your message.
+<!-- {{ $new_event->eventName }} -->
 
 @component('mail::button', ['url' => ''])
 Button Text
