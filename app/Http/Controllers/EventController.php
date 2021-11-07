@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Mail;
+use App\Mail\NewEventMail;
+// use Mail;
 use App\Models\User;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class EventController extends Controller
 {
@@ -43,11 +45,7 @@ class EventController extends Controller
             'eventName'=>'required',
         ]);
         $user = User::findOrFail(1);
-        Mail::send('emails.reminder', ['user' => $user], function ($m) use ($user) {
-            $m->from('john.mbiddulph@icloud.com', 'Your Application');
-
-            $m->to($user->email, $user->name)->subject('Your Reminder!');
-        });
+        Mail::to('john.mbiddulph@gmail.com')->send(new NewEventMail());
         return Event::create($request->all());
     }
 
