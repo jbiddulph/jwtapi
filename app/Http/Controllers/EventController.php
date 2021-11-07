@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\NewEventMail;
+
 // use Mail;
+use App\Mail\NewEventMail;
 use App\Models\User;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+
 
 class EventController extends Controller
 {
@@ -45,6 +47,7 @@ class EventController extends Controller
             'eventName'=>'required',
         ]);
         $user = User::findOrFail(1);
+        \Log::info(['User:', $user]);
         Mail::to('john.mbiddulph@gmail.com')->send(new NewEventMail());
         return Event::create($request->all());
     }
