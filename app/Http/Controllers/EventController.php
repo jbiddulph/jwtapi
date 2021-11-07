@@ -47,8 +47,7 @@ class EventController extends Controller
             'eventName'=>'required',
         ]);
         $user = User::findOrFail(1);
-        \Log::info(['User:', $user]);
-        Mail::to('john.mbiddulph@gmail.com')->send(new NewEventMail());
+        Mail::to($user->email)->send(new NewEventMail($request));
         return Event::create($request->all());
     }
 
