@@ -1,10 +1,13 @@
 @component('mail::message')
-# Introduction
+# A new event has been added!
 
-{{ $new_event->eventName }}
+Name: {{ $new_event->eventName }}
+On: {{ $new_event->eventDate }}
+From: {{ $new_event->eventTimeStart }}
+Until: {{ $new_event->eventTimeEnd }}
 
-@component('mail::button', ['url' => ''])
-Button Text
+@component('mail::button', ['url' => `http://www.pubmic.co.uk/pubmic/venues/{{ $new_event->venue_id }}`])
+Go to Venue
 @endcomponent
 
 Thanks,<br>
